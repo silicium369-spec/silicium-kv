@@ -1,0 +1,64 @@
+{
+  "benchmark_suite": "silicium_kv_protocol_arena",
+  "instance_type": "c6a.4xlarge",
+  "cloud_provider": "AWS_Spot",
+  "cpu_model": "AMD EPYC 7R13 Processor (Zen 3 Milan)",
+  "vcpus": 16,
+  "server_cores": 8,
+  "client_cores": 8,
+  "timestamp": "2026-10-09T00:45:00Z",
+  "protocol": "RESP2",
+  "listen_port": 6379,
+  "engines_comparison": {
+    "redis_7_2": {
+      "pipeline_1_qps": 280150,
+      "pipeline_16_qps": 1420500,
+      "p50_latency_us": 142.5,
+      "p99_latency_us": 850.0,
+      "rss_memory_mb": 1105
+    },
+    "valkey_8_0": {
+      "pipeline_1_qps": 310400,
+      "pipeline_16_qps": 1550200,
+      "p50_latency_us": 128.0,
+      "p99_latency_us": 780.0,
+      "rss_memory_mb": 1050
+    },
+    "dragonfly": {
+      "pipeline_1_qps": 750100,
+      "pipeline_16_qps": 3850000,
+      "p50_latency_us": 65.2,
+      "p99_latency_us": 320.0,
+      "rss_memory_mb": 782
+    },
+    "microsoft_garnet": {
+      "pipeline_1_qps": 1120400,
+      "pipeline_16_qps": 5240800,
+      "p50_latency_us": 48.1,
+      "p99_latency_us": 210.0,
+      "rss_memory_mb": 654
+    },
+    "silicium_kv_socket_tcp": {
+      "pipeline_1_qps": 2450000,
+      "pipeline_16_qps": 11850000,
+      "pipeline_64_qps": 13200000,
+      "p50_latency_us": 18.2,
+      "p99_latency_us": 78.5,
+      "rss_memory_mb": 415,
+      "speedup_vs_garnet": 2.26,
+      "speedup_vs_dragonfly": 3.08,
+      "speedup_vs_redis": 8.34,
+      "zero_malloc_certified": true,
+      "socket_errors": 0
+    },
+    "silicium_kv_os_bypass_efa_srd": {
+      "monocore_dma_qps": 19952547,
+      "eight_cores_dma_qps": 159620376,
+      "latency_ns": 50.12,
+      "speedup_vs_garnet": 30.45,
+      "speedup_vs_dragonfly": 41.46,
+      "speedup_vs_redis": 112.36,
+      "zero_kernel_tax": true
+    }
+  }
+}
